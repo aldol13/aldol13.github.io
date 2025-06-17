@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<!-- Font awesome is required for the chalkboard plugin -->
+		<script src="plugin/fontawesome-free-6.7.2-web/js/all.min.js"></script>
+		<link rel="stylesheet" href="plugin/fontawesome-free-6.7.2-web//css/all.min.css">
+		<!-- Custom controls plugin is used to for opening and closing annotation modes. -->
+		<script src="plugin/customcontrols/plugin.js"></script>
+		<link rel="stylesheet" href="plugin/customcontrols/style.css">
+		<!-- Chalkboard plugin -->
+		<script src="plugin/chalkboard/plugin.js"></script>
+		<link rel="stylesheet" href="plugin/chalkboard/style.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Applied Chemistry</h1>
+					<p>by Dr. Chandan Patel</p>
+				</section>
+				<section data-markdown data-separator="^\n===\n$" data-separator-vertical="^\n---\n$"> </section>
+				<section data-external="water/water_technology.html"></section>
+				<section>End</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/menu/menu.js"></script>
+		
+		<script> 
+			// list of topics
+			// the src must be found within the folder, folders must be distinct!
+			var topics =[
+				{ topic: "WaterTechnology", src: "water_technology.md", folder: "water" }
+			];
+
+			var topicID = getTopicId();
+			document.title = "Reveal.js-plugin: " + getTopic();
+			console.log(document.title)
+			// document.getElementById('pdf-link').href = getURL(topicID) + '&print-pdf';
+
+			// load topic
+			document.querySelector('section[data-markdown=""]').setAttribute("data-markdown",topics[topicID].folder + "/" + topics[topicID].src);
+
+
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				customcontrols: {
+					controls: [
+						{icon: '<i class="fa fa-pen-square"></i>', 
+						title: 'Toggle chalkboard (B)',
+						action: 'RevealChalkboard.toggleChalkboard();'
+				},
+				{ icon: '<i class="fa fa-pen"></i>',
+				  title: 'Toggle notes canvas (C)',
+				  action: 'RevealChalkboard.toggleNotesCanvas();'
+				}
+				]
+				},
+				hash: true,
+                    chalkboard: {
+        				boardmarkerWidth: 3,
+        				chalkWidth: 7,
+        				chalkEffect: 1.0,
+        				storage: null,
+        				src: null,
+        				readOnly: undefined,
+        				transition: 800,
+        				theme: "chalkboard",
+        				background: [ 'rgba(127,127,127,.1)' , path + 'img/blackboard.png' ],
+        				grid: { color: 'rgb(50,50,10,0.5)', distance: 80, width: 2},
+        				eraser: { src: path + 'img/sponge.png', radius: 20},
+        				boardmarkers : [
+                			{ color: 'rgba(100,100,100,1)', cursor: 'url(' + path + 'img/boardmarker-black.png), auto'},
+                			{ color: 'rgba(30,144,255, 1)', cursor: 'url(' + path + 'img/boardmarker-blue.png), auto'},
+                			{ color: 'rgba(220,20,60,1)', cursor: 'url(' + path + 'img/boardmarker-red.png), auto'},
+                			{ color: 'rgba(50,205,50,1)', cursor: 'url(' + path + 'img/boardmarker-green.png), auto'},
+                			{ color: 'rgba(255,140,0,1)', cursor: 'url(' + path + 'img/boardmarker-orange.png), auto'},
+                			{ color: 'rgba(150,0,20150,1)', cursor: 'url(' + path + 'img/boardmarker-purple.png), auto'},
+                			{ color: 'rgba(255,220,0,1)', cursor: 'url(' + path + 'img/boardmarker-yellow.png), auto'}
+        				],
+        				chalks: [
+                			{ color: 'rgba(255,255,255,0.5)', cursor: 'url(' + path + 'img/chalk-white.png), auto'},
+                			{ color: 'rgba(96, 154, 244, 0.5)', cursor: 'url(' + path + 'img/chalk-blue.png), auto'},
+                			{ color: 'rgba(237, 20, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-red.png), auto'},
+                			{ color: 'rgba(20, 237, 28, 0.5)', cursor: 'url(' + path + 'img/chalk-green.png), auto'},
+                			{ color: 'rgba(220, 133, 41, 0.5)', cursor: 'url(' + path + 'img/chalk-orange.png), auto'},
+                			{ color: 'rgba(220,0,220,0.5)', cursor: 'url(' + path + 'img/chalk-purple.png), auto'},
+                			{ color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto'}
+        				]
+    				},
+					dependencies: [
+						{
+							src: 'plugin/external/external/external.js',
+							condition: function() {
+								return !!document.querySelector( '[data-external]' );
+							},
+						}],
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes,RevealMenu, RevealCustomControls, RevealChalkboard ]
+			});
+
+			/******************************************
+			* Setup of topics
+			******************************************/
+
+			function getTopicsMenu() {
+				var topicsMenu = '<ul class="slide-menu-items">';
+				for (var i=0; i < topics.length; i++) {
+					topicsMenu += '<li class="slide-menu-item"><a href="' + getURL(i) + '" style="text-decoration:none">' + topics[i].topic + '</a></li>';
+				}
+				topicsMenu += '</ul>';
+				return topicsMenu;
+			}
+
+			function getTopicId() {
+				// get topic id
+				var urlparts= window.location.href.split('?');
+				if (urlparts.length>=2) {
+					var prefix= encodeURIComponent("topic")+'=';
+					var parts= urlparts[1].split(/[&;]/g);
+					for (var i= parts.length; i-- > 0;) {
+						if (parts[i].lastIndexOf(prefix, 0) !== -1) {
+							var j = parts[i].lastIndexOf(prefix, 0);
+							var identifier = parts[i].substr(prefix.length,parts[i].length-prefix.length);	
+
+							var id = topics.findIndex(element => element.folder == identifier);
+							if ( id < 0 ) {
+								id = Number(identifier);
+							}
+						return Math.min(id,topics.length-1);
+						}
+					}
+				}
+			return 0;
+			}
+
+			function nextTopic() {
+				if ( topicId >= topics.length-1 ) {
+					alert("You already reached the last slide deck!");
+				}
+				else {
+					window.location.href = getURL(topicId+1);
+				}
+				return false;
+			}
+
+			function getURL(id) {
+				var urlparts= window.location.href.split('?');
+				if ( id === undefined ) {
+		  			return urlparts[0];
+				}
+				return urlparts[0] + '?' + "topic=" + topics[id].folder;
+			}
+
+			function getPath() {
+				return topics[topicId].folder;
+			}
+
+			function getTopic() {
+				return topics[topicID].topic;
+			}
+
+		</script>
+		
+		<style type="text/css">
+    		/* 1. Style header/footer <div> so they are positioned as desired. */
+    		#header-left {
+     			position: absolute;
+        		top: 0%;
+        		left: 0%;
+    		}
+    		#header-right {
+        		position: absolute;
+        		top: 0%;
+        		right: 0%;
+    		}
+    		#footer-center {
+        		position: absolute;
+        		bottom: 0%;
+        		left: 50%;
+    		}
+		</style>
+
+		<!-- 2. Create hidden header/footer <div> -->
+		<div id="hidden" style="display:none;">
+    		<div id="header">
+        		<div id="header-right"><img src="img/JSPM_logo.jpg"; style="width: 100px;height: 100px;margin-top: 0.0em"></div>
+        		<!--div id="header-right">HEADER_RIGHT</div-->
+        		<div id="footer-center"><hr style="margin-top: 0em; margin-bottom: 0.1em"><p style="font-size: 10px; text-align: center;margin-bottom: 0.5em; margin-top: 0.0em" >Dr. Chandan Patel<br> JSPM University, Pune</p></div>
+    		</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+		<script type="text/javascript">
+    	// 3. On Reveal.js ready event, copy header/footer <div> into each `.slide-background` <div>
+    		var header = $('#header').html();
+    		if ( window.location.search.match( /print-pdf/gi ) ) {
+        		Reveal.addEventListener( 'ready', function( event ) {
+            	$('.slide-background').append(header);
+        		});
+    		}
+    		else {
+        		$('div.reveal').append(header);
+   			}
+		</script>
+	</body>
+</html>
