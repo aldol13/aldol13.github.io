@@ -1,0 +1,3 @@
+Clazz.declarePackage("JV");
+Clazz.declareInterface(JV, "JmolChimeMessenger");
+;//5.0.1-v7 Thu May 08 14:17:10 CDT 2025

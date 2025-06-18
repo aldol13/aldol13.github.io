@@ -1,67 +1,135 @@
 # External.js
-By: Cal Evans <cal@calevans.com>
 
-(c) 2015 [Evans Internet Construction Company, Inc.](http://eicc.com)
+This is a plugin for Reveal.js. It allows you to specify external files to be loaded into a presentation. This extension also allows external files in already external files (Subfiles). It allows a course, which may be hundreds of slides, to be broken into modules and managed individually.
+ 
+## Installation
+
+There are several ways to install reveal_external: 
+
+- The manual way: Download external/external.js and save it to your project structure
+- Install with [bower](https://www.bower.io): `bower install reveal_external` 
+- Install with [npm](https://www.npmjs.com): `npm install reveal_external`
+
+## Example
+
+Please find the `example` folder in this repository for a working demo presentation.
+
+
+## Using external.js
+
+Using the plugin is easy. First, register it in your Reveal.js initialize block.
+
+```javascript
+{ 
+    src: 'plugin/external/external.js', 
+    condition: function() { 
+        return !!document.querySelector( '[data-external],[data-external-replace]' ); 
+    } 
+},
+```
+Then simply add an element into your presentation with a data-external or data-external-replace attribute.
+
+### data-external
+
+Will put the loaded content into the node with the data-external attribute.
+
+```html
+<section data-external="module_01/index.html"> </section>
+```
+
+### data-external-replace
+
+Will replace the node with the loaded content. 
+
+```html
+<section data-external-replace="module_02/index.html"> </section>
+```
+
+### Load Fragments
+
+You can specify a CSS selector to add only a part of the loaded content. 
+
+```html
+<section data-external-replace="short.html#.slides > section"> </section>
+```
+
+### Options 
+
+```javascript
+external: {
+    async: false,
+    mapAttributes: ['src']
+}
+```
+
+#### async
+
+By default the external files will be loaded synchronously. This avoids conflicts with other plugins.
+You can activate asynchronous loading with this option.
+
+#### mapAttributes
+
+By default the plugin will convert relative paths (dot as first character) in `src` attributes. This
+allows you to specify the path relative to the file you're in, rather then the one it is included in.
+
+Set to `false` to disable, or provide an array of attribute names.
+
+### Recursion
+
+If you want to load external files, you have to choose relative paths in the "data-external*"-attribute. In the following there is a simple example of how to include many files in one reveal presentation: 
+
+Folder structure: 
+
+- __includes__
+	- __chapter1__
+		- 	__chapter1_1__
+			- index1_1.html 
+		-  __chapter1_2__
+			- index1_2.html 
+		-  index_1.html
+	- __chapter_2__
+		- index_2.html
+	- __chapter_3__
+		- index_3.html
+- index.html
+
+Code of index.html: 
+
+```
+...
+<div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+
+    <div class="slides">
+         <section data-external="includes/chapter1/index_1.html"> </section>
+         <section data-external="includes/chapter2/index_2.html"> </section>
+         <section data-external="includes/chapter3/index_3.html"> </section>
+    </div> <!-- slides -->
+
+</div> <!-- Reveal -->
+...
+```
+
+Now you may wish to include the subchapters 1.1 and 1.2 to the content of chapter 1. This would be the code of index_1.html:
+
+```
+...
+	<section data-external="chapter1_1/index1_1.html"> </section>
+	<section data-external="chapter1_2/index1_2.html"> </section>
+...
+```
+Remember that all the paths entered in "data-external" were relative!
+
+It is also possible to include files outside of _section_-tags, as this would result in seperate slides. If you don't want the included content to be a new slide, you can include the content to another element, too (e.g. a _div_).
+
+```
+...
+	<div data-external="chapter1_1/index1_1.html"> </div>
+...
+```
+
+## Credits
+
+By: [Jan Schoepke](https://github.com/janschoepke), originally by [Cal Evans](https://github.com/calevans). Thanks to [Thomas Weinert](https://github.com/ThomasWeinert) for massive improvements in version 1.3!
 
 License: MIT
-
-## IMPORTANT NOTE ##
-This project serves a very specific purpose and as such I don't usually take PRs or respond to requests for new features. You are welcome to fok it and make it your own. 
-
-You can also check out [this version](https://github.com/janschoepke/reveal_external) whcich does seem to be mantained and the author seems to be open to PRs and responding to issues.
-
-## Readme.md ##
-This is a plugin for Reveal.js. It allows you to specifiy external files to be loaded into a presentation. I developed it for [Zend](http://zend.com) Training. It allows a course, which may be hundreds of slides, to be broken into modules and managed individually. This allows for a course Subject Matter Expert to be working on one module, while the designer is working on another. 
-
-# Using external.js
-Using the plugin is easy. First, register it in your Reveal.initalize block.
-
-    { src: 'plugin/external/external.js', condition: function() { return !!document.querySelector( '[data-external]' ); } },
-
-Then simply add an element into your presentation with a data-external attribute.
-
-	<section data-external="module_01/index.html"> </section>
-
-In my example, I load in all sections, so my main presentation looks like this.
-
-	<div class="reveal">
-		<!-- Any section element inside of this container is displayed as a slide -->
-
-		<div class="slides">
-			 <section data-external="module_01/index.html"> </section>
-			 <section data-external="module_02/index.html"> </section>
-		</div> <!-- slides -->
-
-	</div> <!-- Reveal -->
-
-A sample of one of the files would look like this:
-
-	<section>
-		<h2>This is a slide</h2>
-		<ul>
-			<li>Point 1</li>
-			<li>Point 2</li>
-			<li>Point 3</li>
-		</ul>
-
-		<aside class="notes">
-			These are speaker notes
-		</aside>
-	<section>
-
-	<section>
-		<h2>This is a second slide</h2>
-		<p>Just to show that you can load multiple slides at a time, this is a second slide.</p>
-	</section>
-
-This makes each include file its own sub-module that can be navigated
-by the up and down cursor keys as well as the space bar,  but modules can be switched by using
-left and right.
-
-You can of course do it differently. You can also still do sub sections for slides within a separate file. Anything that can normally be done in reveal.js, can be done inside of an externally loaded file.
-
-# Version
-- 1.0.0 Initial Release
-
-# Mantainer
-[Cal Evans](https://blog.calevans.com) <cal@calevans.com>
