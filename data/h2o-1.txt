@@ -1,0 +1,5 @@
+select (atomno=1);
+lcaocartoon lonepair "lpa" color red ;
+lcaocartoon lonepair "lpb" color red ;
+lcaocartoon create lpa color yellow translucent ;
+lcaocartoon create lpb color yellow translucent ;

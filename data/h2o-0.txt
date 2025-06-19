@@ -1,0 +1,3 @@
+load data/h2o.xyz
+set bondRadiusMilliAngstroms 60
+spacefill 40
