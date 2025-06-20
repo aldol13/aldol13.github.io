@@ -1,13 +1,25 @@
 <section>
 <h2>Structure of Water</h2>
 <div class="p_jmol">
-    <ul>
+    <ul style="list-style-type:none;white-space: pre-wrap">
     <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-0.txt" type="radio"></input>Water has a bent structure </li>
     <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-1.txt" type="radio"></input>The Oxygen atom has two lone pairs of electrons</li>
-    <li>The Oxygen atom is sp3 hybridized (VSEPR model)</li>
-    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-2.txt" type="radio"></input>Along with lone pairs and hydrogen atom the water molecule has tetrahedron geometery</li>
+    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-2.txt" type="radio"></input>The Oxygen atom is sp3 hybridized (VSEPR model)</li>
+    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-3.txt" type="radio"></input>Along with lone pairs and hydrogen atom the water molecule has tetrahedron geometery</li>
 </ul>
 
 </div>
 <div class="jmol_div" id="jmol0" data="data/h2o-tet.xyz" scr="set bondRadiusMilliAngstroms 60; spacefill 40"></div>
+</section>
+<section>
+    <h3>Hydrogen Bonding in Water</h3>
+    <div class="p_jmol">
+        <ul style="list-style-type:none;white-space: pre-wrap">
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_on.txt" type="radio"></input>Each water molecule can form Four Hydrogen bonds</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_O.txt" type="radio"></input>Two Hydrgogen bonds are formed through Oxygen atom as an Acceptor</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_H.txt" type="radio">Two Hydrogen bonds are formed through the two Hydrogen Atoms as Donor</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_tet.txt" type="radio">The four hydrogen bonded water molecules are also arranged in a tetrahedron geometry</li>
+        </ul>
+    </div>
+    <div class="jmol_div" id="jmol1" data="data/7waters.sdf" scr="set bondRadiusMilliAngstroms 60; spacefill 40"></div>
 </section>

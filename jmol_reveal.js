@@ -17,7 +17,7 @@ var jmolInfo;
 		width: "100%",
 		height: "100%" ,
 		debug: false ,
-		color: "#000000", //"["+bg_color+"]" , //#191919
+		color: "#FFFFFF", //"["+bg_color+"]" , //#191919
 		use: "HTML5",
 		j2sPath: "jsmol/j2s",
 		jarPath: "jsmol/java",

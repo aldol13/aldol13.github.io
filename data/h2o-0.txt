@@ -1,3 +1,4 @@
-load data/h2o.xyz
+load data/h2o-tet.xyz
+center @1 ;
 set bondRadiusMilliAngstroms 60
 spacefill 40

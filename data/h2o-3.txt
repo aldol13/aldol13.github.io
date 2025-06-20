@@ -9,3 +9,7 @@ lcaocartoon color yellow ;
 lcaocartoon translucent 0.8 ;
 lcaocartoon create lpa ;
 lcaocartoon create lpb ;
+polyhedra ID "Tet" @1 TO [@2 @3 {0.3554,0.7056,0.6565} {-0.9181,0.0304,0.1740}]; 
+color $Tet blue;
+color $Tet translucent 0.9;
+polyhedra Tet EDGES;
