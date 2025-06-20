@@ -1,0 +1,6 @@
+load files  "data/w0.txt" 
+set bondRadiusMilliAngstroms 60; spacefill 40;
+hbonds on
+calculate hbonds
+color hbonds blue
+hbonds 0.03
