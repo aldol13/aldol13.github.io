@@ -1,0 +1,46 @@
+<section data-state="Jmol">
+<h2>Structure of Water</h2>
+<div class="p_jmol">
+    <ul style="list-style-type:none;white-space: pre-wrap">
+    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-0.txt" type="radio"></input>Water has a bent structure </li>
+    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-1.txt" type="radio"></input>The Oxygen atom has two lone pairs of electrons</li>
+    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-2.txt" type="radio"></input>The Oxygen atom is sp3 hybridized (VSEPR model)</li>
+    <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol0" scr="script data/h2o-3.txt" type="radio"></input>Along with lone pairs and hydrogen atom the water molecule has tetrahedron geometery</li>
+</ul>
+
+</div>
+<div class="jmol_div" id="jmol0" data="data/h2o-tet.xyz" scr="set bondRadiusMilliAngstroms 60; spacefill 40"></div>
+</section>
+<section data-state="Jmol">
+    <h3>Hydrogen Bonding in Water</h3>
+    <div class="p_jmol">
+        <ul style="list-style-type:none;white-space: pre-wrap">
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_on.txt" type="radio"></input>Each water molecule can form Four Hydrogen bonds</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_O.txt" type="radio"></input>Two Hydrgogen bonds are formed through Oxygen atom as an Acceptor</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_H.txt" type="radio">Two Hydrogen bonds are formed through the two Hydrogen Atoms as Donor</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol1" scr="script data/hbonds_tet.txt" type="radio">The four hydrogen bonded water molecules are also arranged in a tetrahedron geometry</li>
+        </ul>
+    </div>
+    <div class="jmol_div" id="jmol1" data="data/7waters.sdf" scr="set bondRadiusMilliAngstroms 60; spacefill 40"></div>
+</section>
+<section>
+    <h3>Phases of Water</h3>
+    <div class="p_jmol">
+        <ul style="list-style-type:none;white-space: pre-wrap">
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol2" scr="script data/water-cluster.txt" type="radio"></input>In gas phase water molecules are moving at very high speed forming hydrogen bonds only in clusters</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol2" scr="script data/water-anim1.txt" type="radio"></input>In Liquid phase, the hydrogen bonds undergo continuous formation and breakage as water molecules are randomly moving</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol2" scr="script data/ice_2layer.txt" type="radio"></input>In solid phase (ice) water molecules form crystal in which each water molecule is hydrogen bonded to four other water molecules</li>
+        </ul>
+    </div>
+    <div class="jmol_div" id="jmol2" data="data/w0.txt" scr="set bondRadiusMilliAngstroms 60; spacefill 40"></div>
+</section>
+<section>
+    <h3>Phase Transition Water to Ice</h3>
+    <div class="p_jmol">
+        <ul style="list-style-type:none;white-space: pre-wrap">
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol3" scr="script data/wateranim2.txt" type="radio"></input>As water freezes, the kinetic energy of water molecules is reduced and they crystalize by forming hydogen bonds with neghbouring water molecules</li>
+            <li><input class="jmolradio" name="jmolradio" app="jmolAppletjmol3" scr="script data/wateranim2-water.txt" type="radio"></input>Water</li>
+        </ul>
+    </div>
+    <div class="jmol_div" id="jmol3" data="data/freeze-70-109_no-lp.gz.pdb" scr="set bondRadiusMilliAngstroms 60; spacefill 40"></div>
+</section>

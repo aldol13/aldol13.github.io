@@ -1,0 +1,51 @@
+load data/freeze-70-109_no-lp.gz.pdb
+color background black
+set bondRadiusMilliAngstroms 60; spacefill 40
+calculate hbonds
+hbonds on
+color hbonds blue
+moveTo /* time, axisAngle */ 0 { -569 584 579 118.65} /* zoom, translation */  110 0 0  /* center, rotationRadius */ {6.74 7.76 48.23} 20.51 /* navigation center, translation, depth */ {0 0 0} 16.64 134.45 50;
+
+tx_water = "water"
+tx_ice   = " ice "
+tx_melting  = "melting..."
+tx_freezing = "freezing..."
+
+anim fps 4
+
+color echo yellow; font echo 18;
+/*
+	set echo ~tit 88% 100%; set echo ~tit right; 
+	echo; 
+*/
+set echo ~pc 100% 100%; set echo ~pc right;
+echo @tx_water;
+
+# freezing: 
+#script 3init.spt
+
+# show water:
+model range all
+model rewind
+echo @tx_freezing
+
+/**   # counter
+	cnt = (_lastFrame -1) *100
+	set echo ~tit
+	echo @tx_freezing
+	set echo ~pc
+	echo  %{ (_currentModelNumberInFile / @cnt * 100) %0 }%;  /* %0 makes integer*/
+**/
+
+# animate water to ice:
+while ( _modelNumber != _lastFrame )
+	model next
+	delay 0.25
+end while
+
+/*
+	set echo ~tit
+	echo;
+*/
+set echo ~pc
+echo @tx_ice;

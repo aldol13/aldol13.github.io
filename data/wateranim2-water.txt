@@ -1,0 +1,5 @@
+moveTo /* time, axisAngle */ 0 { -569 584 579 118.65} /* zoom, translation */  110 0 0  /* center, rotationRadius */ {6.74 7.76 48.23} 20.51 /* navigation center, translation, depth */ {0 0 0} 16.64 134.45 50;
+
+frame 1
+tx_water = "water"
+echo @tx_water;
