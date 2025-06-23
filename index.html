@@ -28,12 +28,6 @@
 
 	</head>
 	<style>
-		.jmol_div{
-			height: 500px;
-			width: 500px;
-			position: absolute;
-			right: 0px;
-		}
 		.p_jmol{
 			height: 300px;
 			width: 400px;
@@ -43,6 +37,7 @@
 		}
 	</style>
 	<body>
+		<!--div class="jmol_div" id="jmol0"></div-->
 		<div class="reveal">
 			<div class="slides">
 				<section>
@@ -250,9 +245,30 @@
         		$('div.reveal').append(header);
    			}
 		</script>
-		<script>
+<!--		<script>
 			document.addEventListener('Jmol', function() {
 				document.getElementById("jmol0").style.display = "block";
+			})
+		</script>-->
+		<style type="text/css">
+			.jmol_div{
+				height: 500px;
+				width: 500px;
+				position: absolute;
+				right: 0px;
+				display: none;
+		}
+		</style>
+		<div class="jmol_div" id="jmol0"></div>	
+		<script type="text/javascript">
+			Reveal.addEventListener("slidechanged",function(event){
+				console.log("Slide change detected");
+				var dataState = Reveal.getCurrentSlide().getAttribute("data-state");
+				if (dataState === 'Jmol'){
+					console.log('Jmol detected');
+				} else {
+					console.log('Jmol not deteced');
+				}
 			})
 		</script>
 		<script src="jsmol/JSmol.min.js"></script>
