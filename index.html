@@ -37,9 +37,9 @@
 		}
 	</style>
 	<body>
-		<!--div class="jmol_div" id="jmol0"></div-->
 		<div class="reveal">
 			<div class="slides">
+				<div class="jmol_div" id="jmol0"></div>
 				<section>
 					<h1>Water Technology</h1>
 					<p>Dr. Chandan Patel<p>
@@ -251,7 +251,7 @@
 			})
 		</script>-->
 		<style type="text/css">
-			.jmol_div{
+			.reveal .slides .jmol_div{
 				height: 500px;
 				width: 500px;
 				position: absolute;
@@ -266,8 +266,10 @@
 				var dataState = Reveal.getCurrentSlide().getAttribute("data-state");
 				if (dataState === 'Jmol'){
 					console.log('Jmol detected');
+					document.getElementById("jmol0").style.display = "block";
 				} else {
 					console.log('Jmol not deteced');
+					document.getElementById("jmol0").style.display = "none";
 				}
 			})
 		</script>

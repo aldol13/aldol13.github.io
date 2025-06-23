@@ -77,7 +77,7 @@ $(document).ready(function(){//set up each of the applet locations
 		console.log("jmolApplet"+jmolAppId)
 		$(jmol_ElementList[i]).html(Jmol.getAppletHtml("jmolApplet"+jmolAppId,tempjmolInfo));
 	};
-	console.log("Document Ready Function Stop")
+	console.log("Jmol Document Ready Function Stop")
 
 	$("input[name='jmolradio']").on("change",function(){
 		var jscr = $(this).attr("scr")
