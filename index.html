@@ -36,10 +36,21 @@
 			font-size: 50%;
 		}
 	</style>
+			<style type="text/css">
+			.jmol_div{
+				height: 500px;
+				width: 500px;
+				position: absolute;
+				top: 150px;
+				right: 0px;
+				display: block;
+				z-index: 100;
+		}
+		</style>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<div class="jmol_div" id="jmol0"></div>
+				<!--div class="jmol_div" id="jmol0"></div-->
 				<section>
 					<h1>Water Technology</h1>
 					<p>Dr. Chandan Patel<p>
@@ -250,25 +261,18 @@
 				document.getElementById("jmol0").style.display = "block";
 			})
 		</script>-->
-		<style type="text/css">
-			.reveal .slides .jmol_div{
-				height: 500px;
-				width: 500px;
-				position: absolute;
-				right: 0px;
-				display: none;
-		}
-		</style>
-		<div class="jmol_div" id="jmol0"></div>	
+		<!--div class="jmol_div" id="jmol0"></div-->	
 		<script type="text/javascript">
 			Reveal.addEventListener("slidechanged",function(event){
 				console.log("Slide change detected");
 				var dataState = Reveal.getCurrentSlide().getAttribute("data-state");
 				if (dataState === 'Jmol'){
 					console.log('Jmol detected');
+					console.log(jmol_isReady);
 					document.getElementById("jmol0").style.display = "block";
 				} else {
 					console.log('Jmol not deteced');
+					console.log(jmol_isReady)
 					document.getElementById("jmol0").style.display = "none";
 				}
 			})

@@ -68,13 +68,12 @@ $(document).ready(function(){//set up each of the applet locations
 	for (var i = 0; i  <  jmol_ElementList.length ; i++) {
 		console.log(jmol_ElementList[i].id)
 		var jmolAppId = jmol_ElementList[i].id
-		//var jmolAppdata = jmol_ElementList[i].getAttribute("data")
+		var jmolAppdata = jmol_ElementList[i].getAttribute("data")
 		var jmolAppscr = jmol_ElementList[i].getAttribute("scr")
-		//console.log(jmolAppdata)
+		console.log(jmolAppdata)
 		var tempjmolInfo = jmolInfo ;
-                //tempjmolInfo.script = "set frank off; load " + jmolAppdata + "; " + jmolAppscr
-				tempjmolInfo.script = "set frank off " + + "; " + jmolAppscr
-//		tempjmolInfo.script(jmolAppdata)
+                tempjmolInfo.script = "set frank off; load " + jmolAppdata + "; " + jmolAppscr
+		tempjmolInfo.script(jmolAppdata)
 		console.log("jmolApplet"+jmolAppId)
 		$(jmol_ElementList[i]).html(Jmol.getAppletHtml("jmolApplet"+jmolAppId,tempjmolInfo));
 	};
