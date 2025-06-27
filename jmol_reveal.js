@@ -73,9 +73,9 @@ $(document).ready(function(){//set up each of the applet locations
 		//console.log(jmolAppdata)
 		var tempjmolInfo = jmolInfo ;
                 //tempjmolInfo.script = "set frank off; load " + jmolAppdata + "; " + jmolAppscr
-				tempjmolInfo.script = "set frank off " + + "; " + jmolAppscr
+				tempjmolInfo.script = "set frank off" + "; " + jmolAppscr
 //		tempjmolInfo.script(jmolAppdata)
-		console.log("jmolApplet"+jmolAppId)
+		console.log("jmolApplet"+jmolAppId+" "+tempjmolInfo.script)
 		$(jmol_ElementList[i]).html(Jmol.getAppletHtml("jmolApplet"+jmolAppId,tempjmolInfo));
 	};
 	console.log("Jmol Document Ready Function Stop")
